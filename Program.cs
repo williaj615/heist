@@ -8,18 +8,18 @@ namespace heist
     static void Main(string[] args)
     {
 
-      int bankDifficulty = 100;
-
       List<Dictionary<string, string>> teamMembers = new List<Dictionary<string, string>>();
 
       Console.WriteLine("Plan Your Heist!");
 
+      Console.WriteLine("What is the difficulty of the bank you're robbing?");
+      int bankDifficulty = int.Parse(Console.ReadLine());
 
       while (true)
       {
         Dictionary<string, string> teamMember = new Dictionary<string, string>();
 
-        Console.WriteLine("Enter Your Team Member's name.");
+        Console.Write("Enter Your Team Member's name.");
 
         string memberName = Console.ReadLine();
         if (memberName == "")
@@ -29,13 +29,13 @@ namespace heist
 
         teamMember.Add("Name", memberName);
 
-        Console.WriteLine("Thanks! Now, enter your team member's skill level.");
+        Console.Write("Thanks! Now, enter your team member's skill level.");
 
         string memberLevel = Console.ReadLine();
         //   int memberLevelInt = int.Parse(memberLevel);
         teamMember.Add("Skill Level", memberLevel);
 
-        Console.WriteLine("Awesome! Now, enter your team member's courage factor.");
+        Console.Write("Awesome! Now, enter your team member's courage factor.");
 
         string memberFactor = Console.ReadLine();
         //   int memberFactorInt = int.Parse(memberFactor);
@@ -66,6 +66,8 @@ namespace heist
         skillTotal += memberSkillInt;
       }
 
+      int successCount = 0;
+      int failureCount = 0;
 
       for (int i = 0; i < int.Parse(trialRuns); i++)
       {
@@ -78,12 +80,18 @@ namespace heist
         if (skillTotal >= trueDifficulty)
         {
           Console.WriteLine("Sick, y'all can totally loot this place. 🤟🏾");
+          successCount++;
         }
         else
         {
           Console.WriteLine("Sorry, you're going to have to beef up your skills to take this place down.");
+          failureCount++;
         }
       }
+
+      Console.WriteLine($"Successful Heists: {successCount}");
+      Console.WriteLine($"Failed Heists: {failureCount}");
+
     }
   }
 }
