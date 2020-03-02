@@ -8,6 +8,8 @@ namespace heist
     static void Main(string[] args)
     {
 
+      int bankDifficulty = 100;
+
       List<Dictionary<string, string>> teamMembers = new List<Dictionary<string, string>>();
 
       Console.WriteLine("Plan Your Heist!");
@@ -51,6 +53,25 @@ namespace heist
         {
           Console.WriteLine($"The team member's {pair.Key} is {pair.Value}");
         }
+      }
+
+      int skillTotal = 0;
+
+      foreach (Dictionary<string, string> member in teamMembers)
+      {
+        int memberSkillInt = int.Parse(member["Skill Level"]);
+        skillTotal += memberSkillInt;
+      }
+
+      Console.WriteLine($"Your team's total skill level is {skillTotal}");
+
+      if (skillTotal >= bankDifficulty)
+      {
+        Console.WriteLine("Sick, y'all can totally loot this place. 🤟🏾");
+      }
+      else
+      {
+        Console.WriteLine("Sorry, you're going to have to beef up your skills to take this place down.");
       }
     }
   }
