@@ -46,18 +46,19 @@ namespace heist
 
       Console.WriteLine($"Sweet! You have created a team with {teamMembers.Count} members.");
 
-      foreach (Dictionary<string, string> member in teamMembers)
-      {
+      // foreach (Dictionary<string, string> member in teamMembers)
+      // {
 
-        foreach (KeyValuePair<string, string> pair in member)
-        {
-          Console.WriteLine($"The team member's {pair.Key} is {pair.Value}");
-        }
-      }
+      //   foreach (KeyValuePair<string, string> pair in member)
+      //   {
+      //     Console.WriteLine($"The team member's {pair.Key} is {pair.Value}");
+      //   }
+      // }
+
+      Console.WriteLine("How many trial runs would you like to do?");
+      string trialRuns = Console.ReadLine();
 
       int skillTotal = 0;
-      int luckFactor = new Random().Next(-10, 11);
-      int trueDifficulty = bankDifficulty + luckFactor;
 
       foreach (Dictionary<string, string> member in teamMembers)
       {
@@ -65,16 +66,23 @@ namespace heist
         skillTotal += memberSkillInt;
       }
 
-      Console.WriteLine($"Your team's total skill level is {skillTotal}.");
-      Console.WriteLine($"The difficulty of robbing this bank is {trueDifficulty}.");
 
-      if (skillTotal >= trueDifficulty)
+      for (int i = 0; i < int.Parse(trialRuns); i++)
       {
-        Console.WriteLine("Sick, y'all can totally loot this place. 🤟🏾");
-      }
-      else
-      {
-        Console.WriteLine("Sorry, you're going to have to beef up your skills to take this place down.");
+        int luckFactor = new Random().Next(-10, 11);
+        int trueDifficulty = bankDifficulty + luckFactor;
+
+        Console.WriteLine($"Your team's total skill level is {skillTotal}.");
+        Console.WriteLine($"The difficulty of robbing this bank is {trueDifficulty}.");
+
+        if (skillTotal >= trueDifficulty)
+        {
+          Console.WriteLine("Sick, y'all can totally loot this place. 🤟🏾");
+        }
+        else
+        {
+          Console.WriteLine("Sorry, you're going to have to beef up your skills to take this place down.");
+        }
       }
     }
   }
