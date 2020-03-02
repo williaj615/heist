@@ -56,6 +56,8 @@ namespace heist
       }
 
       int skillTotal = 0;
+      int luckFactor = new Random().Next(-10, 11);
+      int trueDifficulty = bankDifficulty + luckFactor;
 
       foreach (Dictionary<string, string> member in teamMembers)
       {
@@ -63,9 +65,10 @@ namespace heist
         skillTotal += memberSkillInt;
       }
 
-      Console.WriteLine($"Your team's total skill level is {skillTotal}");
+      Console.WriteLine($"Your team's total skill level is {skillTotal}.");
+      Console.WriteLine($"The difficulty of robbing this bank is {trueDifficulty}.");
 
-      if (skillTotal >= bankDifficulty)
+      if (skillTotal >= trueDifficulty)
       {
         Console.WriteLine("Sick, y'all can totally loot this place. 🤟🏾");
       }
